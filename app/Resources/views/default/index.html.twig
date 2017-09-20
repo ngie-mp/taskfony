@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="row justify-content-md-center">
+        <div class="col">
+            <h1><span>Welcome to</span> Taskfony</h1>
+            PWD: <code>{{ base_dir }}</code>
+            <p class="lead">
+                <a  href="{{ path('fos_user_registration_register') }}"
+                    class="btn btn-lg btn-secondary">Sign up</a>
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

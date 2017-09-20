@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}TaskFony{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet"  href="{{ asset('css/app.css') }}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+</head>
+<body>
+<div class="site-wrapper">
+    <div class="site-wrapper-inner">
+        <div class="cover-container">
+            <div class="masthead clearfix">
+                <div class="inner">
+                    <h1 class="masthead-brand">Taskfony</h1>
+                    <nav class="nav nav-masthead">
+                        {% if is_granted('ROLE_USER') %}
+                            <a href="{{ path('fos_user_security_logout') }}"
+                               class="nav-link active" >Logout</a>
+                        {% else %}
+                            <a href="{{ path('fos_user_security_login') }}"
+                               class="nav-link" >Login</a>
+                            <a href="{{ path('fos_user_registration_register') }}"
+                               class="nav-link" >Sign up</a>
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
+            <div class="inner cover">
+                {% block body %}
+                {% endblock %}
+            </div>
+            <div class="mastfoot">
+                <div class="inner">
+                    <p> Made with <i class="fa fa-heart heart"></i> by: <a href="#">@ngie-mp</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% block javascripts %}
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+{% endblock %}
+</body>
+</html>

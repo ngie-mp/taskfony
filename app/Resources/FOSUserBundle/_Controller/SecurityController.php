@@ -29,7 +29,7 @@ class SecurityController extends Controller
     {
         /** @var $session \Symfony\Component\HttpFoundation\Session\Session */
         /** Redirect from login */
-
+        dump('test'); exit();
         $authChecker = $this->container->get('security.authorization_checker');
         $router = $this->container->get('router');
 
@@ -51,13 +51,11 @@ class SecurityController extends Controller
         if (!$error instanceof AuthenticationException) {
             $error = null; // The value does not come from the security component.
         }
-
+        dump('test');
         // Redirection
-        if ($authChecker->isGranted('ROLE_ADMIN')) {
-            return new RedirectResponse($router->generate('todo_list'), 307);
-        }
 
         if ($authChecker->isGranted('ROLE_USER')) {
+            dump('test');
             return new RedirectResponse($router->generate('todo_list'), 307);
         }
 

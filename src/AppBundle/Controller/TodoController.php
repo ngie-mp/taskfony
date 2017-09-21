@@ -84,7 +84,7 @@ class TodoController extends Controller
     }
 
     /**
-     * @Route(/todos/details/{id}, name=todo_details)
+     * @Route("/todos/details/{id}", name="todo_details")
      */
     public function detailsAction($id)
     {

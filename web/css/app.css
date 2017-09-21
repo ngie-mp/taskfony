@@ -126,6 +126,14 @@ body {
 
 
 /*
+ * Table
+ */
+
+.table {
+    background-color: #FFFFFF !important;
+}
+
+/*
  * Affix and center
  */
 

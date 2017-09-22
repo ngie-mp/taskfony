@@ -56,6 +56,15 @@ class Todo
      */
     private $createDate;
 
+    /**
+     * @var \userId
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="todos")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true)
+     */
+    private $userId;
+
 
     /**
      * Get id
@@ -185,6 +194,22 @@ class Todo
     public function getCreateDate()
     {
         return $this->createDate;
+    }
+
+    /**
+     * @return \userId
+     */
+    public function getUserId()
+    {
+        return $this->userId;
+    }
+
+    /**
+     * @param \userId $userId
+     */
+    public function setUserId($userId)
+    {
+        $this->userId = $userId;
     }
 }
 

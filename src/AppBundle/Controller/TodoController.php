@@ -23,9 +23,10 @@ class TodoController extends Controller
      */
     public function listAction(Request $request)
     {
+        $user = $this->getUser();
         $todos = $this->getDoctrine()
             ->getRepository('AppBundle:Todo')
-            ->findAll();
+            ->findByUserId($user->getId());
 
         return $this->render('todos/index.html.twig', array(
             'todos' => $todos
@@ -65,6 +66,9 @@ class TodoController extends Controller
             // $todo->setDuedate($due_date);
             $todo->setCreateDate($now);
 
+            $user = $this->getUser();
+            $todo->setUserId($user->getId());
+
             $sn = $this->getDoctrine()->getManager();
             $sn -> persist($todo);
             $sn -> flush();
@@ -96,15 +100,15 @@ class TodoController extends Controller
         $todo->setName($todo->getName());
         $todo->setCategory($todo->getCategory());
         $todo->setDescription($todo->getDescription());
-        $todo->setDuedate($todo->getDueDate());
-        $todo->setCreateDate($now);
+        // $todo->setDuedate($todo->getDueDate());
+        // $todo->setCreateDate($now);
 
         $form = $this->createFormBuilder($todo)
             ->add('name', TextType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
             ->add('category', TextType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
             ->add('description', TextareaType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
 
-            ->add('due_date', DateTimeType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
+            //->add('due_date', DateTimeType::class, array('attr' => array('class' => 'form-control', 'style' => 'margin-bottom:15px')))
             ->add('Save', SubmitType::class, array('label'=> 'Update Todo', 'attr' => array('class' => 'btn btn-primary', 'style' => 'margin-bottom:15px')))
             ->getForm();
 
@@ -113,7 +117,7 @@ class TodoController extends Controller
             $name = $form['name']->getData();
             $category = $form['category']->getData();
             $description = $form['description']->getData();
-            $due_date = $form['due_date']->getData();
+           // $due_date = $form['due_date']->getData();
             $name = $form['name']->getData();
 
 
@@ -123,8 +127,8 @@ class TodoController extends Controller
             $todo->setName($name);
             $todo->setCategory($category);
             $todo->setDescription($description);
-            $todo->setDuedate($due_date);
-            $todo->setCreateDate($now);
+          //  $todo->setDuedate($due_date);
+          //  $todo->setCreateDate($now);
 
             $sn -> flush();
 

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <table class=table table-bordered>
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th>#</th>
@@ -11,6 +11,7 @@
         </tr>
         </thead>
         <tbody>
+        {{ todos | length }}
         {% for todo in todos %}
             <tr>
                 <td scope=row>{{todo.id}}</td>
@@ -18,9 +19,9 @@
                 <td>{{todo.createDate | date('F j, Y, g:i a')}}</td>
                 <td>{{todo.duedate | date('F j, Y, g:i a')}}</td>
                 <td>
-                    <a href="{{ path('todo_details', {'id': todo.id}) }}"class=btn btn-danger>View</a>
-                    <a href="{{ path('todo_edit', {'id': todo.id}) }}"class=btn btn-danger>Edit</a>
-                    <a href="{{ path('todo_delete', {'id': todo.id}) }}"class=btn btn-danger>Delete</a>
+                    <a href="{{ path('todo_details', {'id': todo.id}) }}" class="btn btn-warning">View</a>
+                    <a href="{{ path('todo_edit', {'id': todo.id}) }}" class="btn btn-info">Edit</a>
+                    <a href="{{ path('todo_delete', {'id': todo.id}) }}" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         {% endfor %}
